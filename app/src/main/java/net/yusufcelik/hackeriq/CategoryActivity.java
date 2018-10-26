@@ -47,7 +47,7 @@ public class CategoryActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
+ 
         AndroidNetworking.get("http://hackeriq.yemrekeskin.com//api/v1/applications")
                 .build()
                 .getAsJSONArray(new JSONArrayRequestListener() {
