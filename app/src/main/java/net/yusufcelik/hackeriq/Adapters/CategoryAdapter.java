@@ -2,6 +2,7 @@ package net.yusufcelik.hackeriq.Adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import net.yusufcelik.hackeriq.R;
 
 
 import net.yusufcelik.hackeriq.Models.Category;
+import net.yusufcelik.hackeriq.TopicActivity;
 
 import java.util.List;
 
@@ -55,7 +57,7 @@ public class CategoryAdapter extends BaseAdapter {
         btnTechGo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //v.getContext().startActivity(new Intent(context, CourseActivity.class));
+                v.getContext().startActivity(new Intent(context, TopicActivity.class));
 
             }
         });

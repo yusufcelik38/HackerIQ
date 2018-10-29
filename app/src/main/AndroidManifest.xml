@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="net.yusufcelik.hackeriq">
+
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +11,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".LauncherActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -27,7 +28,10 @@
             android:name=".CategoryActivity"
             android:label="@string/title_activity_category"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".LeadBoardActivity"></activity>
+        <activity android:name=".LeadBoardActivity" />
+        <activity android:name=".TopicActivity" />
+        <activity android:name=".LevelActivity" />
+        <activity android:name=".ProfileActivity"></activity>
     </application>
 
 </manifest>

@@ -1,13 +1,9 @@
 package net.yusufcelik.hackeriq;
 
+
+import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.util.JsonReader;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -21,7 +17,6 @@ import android.widget.ListView;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONArrayRequestListener;
-import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -29,8 +24,6 @@ import net.yusufcelik.hackeriq.Adapters.CategoryAdapter;
 import net.yusufcelik.hackeriq.Models.Category;
 
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +32,8 @@ public class CategoryActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private ListView lstCategory;
-    final List<Category> categoryList=new ArrayList<Category>();
+    final List<Category> categoryList = new ArrayList<Category>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,25 +41,24 @@ public class CategoryActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
- 
+
         AndroidNetworking.get("http://hackeriq.yemrekeskin.com//api/v1/applications")
                 .build()
                 .getAsJSONArray(new JSONArrayRequestListener() {
                     @Override
                     public void onResponse(JSONArray response) {
                         try {
-                            List<JsonObject> objects=new ArrayList<JsonObject>();
-                            for(int i=0;i<response.length();i++){
-                                JsonObject o=new JsonParser().parse(response.get(i).toString()).getAsJsonObject();
-                                categoryList.add(new Category(o.get("id").getAsInt(),o.get("name").getAsString(),o.get("description").getAsString()));
+                            List<JsonObject> objects = new ArrayList<JsonObject>();
+                            for (int i = 0; i < response.length(); i++) {
+                                JsonObject o = new JsonParser().parse(response.get(i).toString()).getAsJsonObject();
+                                categoryList.add(new Category(o.get("id").getAsInt(), o.get("name").getAsString(), o.get("description").getAsString()));
                             }
-                            lstCategory=(ListView)findViewById(R.id.lwCourse);
+                            lstCategory = (ListView) findViewById(R.id.lwCourse);
 
 
-                            CategoryAdapter adapter=new CategoryAdapter(CategoryActivity.this,categoryList,CategoryActivity.this);
+                            CategoryAdapter adapter = new CategoryAdapter(CategoryActivity.this, categoryList, CategoryActivity.this);
                             lstCategory.setAdapter(adapter);
-                        }
-                        catch (Exception e){
+                        } catch (Exception e) {
 
                             e.printStackTrace();
                         }
@@ -76,11 +69,6 @@ public class CategoryActivity extends AppCompatActivity
 
                     }
                 });
-
-
-
-
-
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -132,7 +120,10 @@ public class CategoryActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_profile) {
-            // Handle the camera action
+            Intent intent = new Intent(CategoryActivity.this,
+                    ProfileActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
         } else if (id == R.id.nav_lead_board) {
 
         } else if (id == R.id.nav_setting) {
